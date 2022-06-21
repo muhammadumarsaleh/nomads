@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Travel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Gallery extends Model
+class Transaction extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -15,9 +14,19 @@ class Gallery extends Model
     protected $guarded = ['id'];
 
     protected $hidden = [
+
     ];
+
+    public function details(){
+        return $this->hasMany(TransactionDetail::class, 'transaction_id', 'id');
+    }
 
     public function travel(){
         return $this->belongsTo(Travel::class, 'travel_id', 'id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
 }

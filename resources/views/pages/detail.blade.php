@@ -24,56 +24,32 @@
         <div class="row">
           <div class="col-lg-8 pl-lg-0">
             <div class="card card-details">
-              <h1>Nusa Peninda</h1>
+              <h1>{{ $item->title }}</h1>
               <p>
-                Republic of Indonesia Raya
+                 {{ $item->location }}
               </p>
+              @if($item->galleries->count())
               <div class="gallery">
                 <div class="xzoom-container">
                   <img
                     class="xzoom"
                     id="xzoom-default"
-                    src="{{ asset('frontend/images/details-1.jpg') }}"
-                    xoriginal="{{ asset('frontend/images/details-1.jpg') }}"
+                    src="{{ Storage::url($item->galleries->first()->image ) }}"
+                    xoriginal="{{ Storage::url($item->galleries->first()->image ) }}"
                   />
                   <div class="xzoom-thumbs">
-                    <a href="{{ asset('frontend/images/details-1.jpg') }}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ asset('frontend/images/details-1.jpg') }}"
-                        xpreview="{{ asset('frontend/images/details-1.jpg') }}"
-                    /></a>
-                    <a href="{{ asset('frontend/images/details-1.jpg') }}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ asset('frontend/images/details-1.jpg') }}"
-                        xpreview="{{ asset('frontend/images/details-1.jpg') }}"
-                    /></a>
-                    <a href="{{ asset('frontend/images/details-1.jpg') }}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ asset('frontend/images/details-1.jpg') }}"
-                        xpreview="{{ asset('frontend/images/details-1.jpg') }}"
-                    /></a>
-                    <a href="{{ asset('frontend/images/details-1.jpg') }}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ asset('frontend/images/details-1.jpg') }}"
-                        xpreview="{{ asset('frontend/images/details-1.jpg') }}"
-                    /></a>
-                    <a href="{{ asset('frontend/images/details-1.jpg') }}"
-                      ><img
-                        class="xzoom-gallery"
-                        width="128"
-                        src="{{ asset('frontend/images/details-1.jpg') }}"
-                        xpreview="{{ asset('frontend/images/details-1.jpg') }}"
-                    /></a>
+                    @foreach ($item->galleries as $gallery)
+                        <a href="{{ Storage::url($gallery->image) }}"
+                        ><img
+                          class="xzoom-gallery"
+                          width="128"
+                          src="{{ Storage::url($gallery->image) }}"
+                          xpreview="{{ Storage::url($gallery->image) }}"
+                      /></a>
+                    @endforeach
                   </div>
                 </div>
+                @endif
                 <h2>Tentang Wisata</h2>
                 <p>
                   Nusa Penida is an island southeast of Indonesia’s island
