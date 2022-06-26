@@ -22,7 +22,7 @@ class TravelRequest extends FormRequest
      * @return array<string, mixed>
      */
     public function rules()
-    {
+    { 
         return [
             'title' => 'required|max:255',
             'location' => 'required|max:255',
